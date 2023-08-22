@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart Details - RedStore</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <a href="index.html"><img src="images/logo.png" width="125px"></a>
+            </div>
+            <nav>
+                <ul id="MenuItems">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Product</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="account.html">Account</a></li>
+                </ul>
+            </nav>
+            <a href="cart.html"><img src="images/cart.png" width="30px" height="30px"></a>
+            <img src="images/menu.png" class="menu-icon" onclick="menutoggle()">
+        </div>
+    </div>
+
+      <!-------------------- contact-page ------------->
+
+        <div class="contact">
+            <h2 class="heading">Contact <span>Us!</span></h2>
+
+            <form name="submit-to-google-sheet">
+                <div class="input-box">
+                    <input type="text" name="Full Name" placeholder="Full Name">
+                    <input type="email" name="Email Address" placeholder="Email Address">
+                </div>
+                <div class="input-box">
+                    <input type="number" name="Mobile Number" placeholder="Mobile Number">
+                    <input type="text" name="Email Subject" placeholder="Email Subject">
+                </div>
+                <textarea name="Message" id="" cols="30" rows="10" placeholder="Your Message"></textarea>
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+            <span id="msg"></span>
+        </div>
+
+
+      <!-------------------- footer ------------->
+      <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col-1">
+                    <h3>Download Our App</h3>
+                    <p>Download App for Android and ios mobile phone.</p>
+                    <div class="app-logo">
+                        <img src="images/play-store.png" alt="">
+                        <img src="images/app-store.png" alt="">
+                    </div>
+                </div>
+                <div class="footer-col-2">
+                    <img src="images/logo-white.png" alt="">
+                    <p>Our purpose is to sustainably make the pleasure and 
+                        benefits of sports accessible to the many</p>
+                </div>
+                <div class="footer-col-3">
+                    <h3>Useful Links</h3>
+                   <ul>
+                    <li>Coupons</li>
+                    <li>Blog post</li>
+                    <li>Return Policy</li>
+                    <li>Join Affiliate</li>
+                   </ul>
+                </div>
+                <div class="footer-col-4">
+                    <h3>Follow Us</h3>
+                   <ul>
+                    <li>Facebook</li>
+                    <li>Twitter</li>
+                    <li>Instagram</li>
+                    <li>Discord</li>
+                   </ul>
+                </div>
+            </div>
+            <hr>
+            <p class="copyright">Copyright 2023</p>
+        </div>
+      </div>
+
+
+      
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwPKbRyLEpRLlXNXaB2jNYguMsKwHdscV61h-exzcA-4A1F1cOwHA_BjtOnhAthK7yb/exec'
+        const form = document.forms['submit-to-google-sheet']
+        const msg = document.getElementById("msg")
+      
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+        msg.innerHTML = "Message sent successfully"
+        setTimeout(function(){
+            msg.innerHTML = ""
+        },5000)
+        form.reset()
+      })
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
+
+
+  
+  <script src="script.js"></script>  
+</body>
+</html>
